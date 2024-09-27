@@ -4,7 +4,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 0;
-    margin: 0;
+    margin: 32px;
     border: 0;
     height: 100vh;
 }
@@ -33,4 +33,8 @@ body {
     align-items: center;
     gap: 10px; /* Add spacing between controls */
     margin-bottom: 16px;
+}
+
+h1{
+    font-size: 16px;
 }
