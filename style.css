@@ -6,6 +6,7 @@ body {
     padding: 0;
     margin: 0;
     border: 0;
+    height: 100vh;
 }
 
 #container {
@@ -14,6 +15,7 @@ body {
     width: 960px;
     height: 960px;
     border: 1px solid black; /* Optional: to visualize container's boundary */
+    margin-bottom: 20px; /* Add space between the grid and the controls */
 }
 
 .square {
@@ -22,4 +24,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+
+#controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Add spacing between controls */
 }
