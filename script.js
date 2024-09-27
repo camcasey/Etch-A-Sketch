@@ -1,5 +1,5 @@
-
 let isDrawing = false;
+
 // Detect when the mouse is pressed down
 document.addEventListener('mousedown', () => {
     isDrawing = true;
@@ -9,41 +9,56 @@ document.addEventListener('mousedown', () => {
 document.addEventListener('mouseup', () => {
     isDrawing = false;
 });
-// Modify the function to only change color when mouse is down
 
+// Get references to the container, reset button, and slider
 const container = document.querySelector("#container");
 const resetButton = document.querySelector("#resetButton");
+const gridSizeSlider = document.querySelector("#gridSizeSlider");
+const gridSizeValue = document.querySelector("#gridSizeValue");
 
+// Function to create the grid
 function createGrid(size){
-    const squareSize = 960 / size; 
+    container.innerHTML = "";  // Clear the container
+    const squareSize = 960 / size;  // Calculate the size of each square
+    
     for(let i = 0; i < size * size; i++){
         const square = document.createElement("div");
         square.classList.add("square");
         square.style.width = squareSize + 'px';
         square.style.height = squareSize + 'px';
+        
+        // Add event listeners for drawing
         square.addEventListener('mouseover', changeColor);
-        //change color when single square is clicked or first square when dragged
         square.addEventListener('mousedown', (e) => {
             e.target.style.backgroundColor = 'black';
         });
+
         container.appendChild(square);
     }
 }
 
+// Function to change color while drawing
 function changeColor(e) {
     if (isDrawing) {
-        e.target.style.backgroundColor = 'black';  // Or any other color logic
+        e.target.style.backgroundColor = 'black';  // Change the color
     }
 }
 
+// Reset grid function
 function resetGrid(){
-    alert("reset");
-    const squares = document.querySelectorAll('.square');  // Select all elements with class 'square'
-    squares.forEach(square => square.remove());
-    createGrid(16);
+    const size = gridSizeSlider.value;
+    createGrid(size);
 }
 
-resetButton.addEventListener("click", resetGrid);
+// Update the slider value and grid size when the slider is moved
+gridSizeSlider.addEventListener("input", () => {
+    gridSizeValue.textContent = gridSizeSlider.value;
+    resetGrid();  // Update the grid when the slider changes
+});
 
-createGrid(16);
+// Initialize the grid with a default size
+createGrid(gridSizeSlider.value);
+
+// Attach reset button functionality
+resetButton.addEventListener("click", resetGrid);
 
