@@ -29,7 +29,7 @@ colorPicker.addEventListener("input", (e) => {
 // Function to create the grid
 function createGrid(size){
     container.innerHTML = "";  // Clear the container
-    const squareSize = 960 / size;  // Calculate the size of each square
+    const squareSize = 720 / size;  // Calculate the size of each square
     
     for(let i = 0; i < size * size; i++){
         const square = document.createElement("div");
